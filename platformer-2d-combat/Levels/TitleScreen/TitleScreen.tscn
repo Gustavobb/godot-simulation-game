@@ -1,0 +1,253 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://Levels/Sprites/background.png" type="Texture" id=1]
+[ext_resource path="res://Levels/Sprites/game-name0.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Sprites/start-normal.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Sprites/start-hover.png" type="Texture" id=4]
+[ext_resource path="res://Levels/TitleScreen/TitleScreen.gd" type="Script" id=5]
+[ext_resource path="res://Levels/Sprites/quit-hover.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Sprites/quit-normal.png" type="Texture" id=7]
+[ext_resource path="res://Levels/Sprites/game-name2.png" type="Texture" id=8]
+[ext_resource path="res://Levels/Sprites/game-name3.png" type="Texture" id=9]
+[ext_resource path="res://Levels/Sprites/game-name1.png" type="Texture" id=10]
+[ext_resource path="res://Levels/TitleScreen/Chromatic.shader" type="Shader" id=11]
+[ext_resource path="res://Levels/TitleScreen/select.wav" type="AudioStream" id=12]
+[ext_resource path="res://World/sound/interference.wav" type="AudioStream" id=13]
+[ext_resource path="res://Levels/Sprites/headphone0.png" type="Texture" id=14]
+[ext_resource path="res://Levels/Sprites/headphone1.png" type="Texture" id=15]
+[ext_resource path="res://Levels/Sprites/RECOMENDATION.png" type="Texture" id=16]
+[ext_resource path="res://Levels/Sprites/sound-on-hover.png" type="Texture" id=17]
+[ext_resource path="res://Levels/Sprites/sound-on-normal.png" type="Texture" id=18]
+[ext_resource path="res://Levels/Sprites/continue-normal.png" type="Texture" id=19]
+[ext_resource path="res://Levels/Sprites/continue-hover.png" type="Texture" id=20]
+[ext_resource path="res://UI/font/Retro Gaming.ttf" type="DynamicFontData" id=21]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 21 )
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 2
+fps = 15.0
+frame_0/texture = ExtResource( 14 )
+frame_0/delay_sec = 3.0
+frame_1/texture = ExtResource( 15 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 11 )
+shader_param/apply = true
+shader_param/amount = 1.0
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 4
+fps = 10.0
+frame_0/texture = ExtResource( 2 )
+frame_0/delay_sec = 1.5
+frame_1/texture = ExtResource( 10 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 8 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 9 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 11 )
+shader_param/apply = true
+shader_param/amount = 1.0
+
+[sub_resource type="AnimatedTexture" id=6]
+frames = 2
+frame_0/texture = ExtResource( 20 )
+frame_0/delay_sec = 4.5
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=7]
+frames = 2
+fps = 10.0
+frame_0/texture = ExtResource( 19 )
+frame_0/delay_sec = 4.0
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 11 )
+shader_param/apply = true
+shader_param/amount = 1.0
+
+[sub_resource type="AnimatedTexture" id=9]
+frames = 2
+frame_0/texture = ExtResource( 3 )
+frame_0/delay_sec = 3.0
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=10]
+frames = 2
+fps = 10.0
+frame_0/texture = ExtResource( 4 )
+frame_0/delay_sec = 2.0
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 11 )
+shader_param/apply = true
+shader_param/amount = 1.0
+
+[sub_resource type="AnimatedTexture" id=12]
+frames = 2
+fps = 10.0
+frame_0/texture = ExtResource( 7 )
+frame_0/delay_sec = 2.5
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=13]
+frames = 2
+fps = 10.0
+frame_0/texture = ExtResource( 6 )
+frame_0/delay_sec = 3.0
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1, 1.09091 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 660 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -68.0
+size_flags_horizontal = 3
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.721569, 0.709804, 0.709804, 1 )
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 50
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 50.0
+margin_right = 181.0
+margin_bottom = 670.0
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+margin_right = 181.0
+margin_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = SubResource( 2 )
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 36.0
+margin_right = 181.0
+margin_bottom = 32.0
+texture = ExtResource( 16 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 340.0
+margin_top = 50.0
+margin_right = 940.0
+margin_bottom = 670.0
+size_flags_horizontal = 4
+custom_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+material = SubResource( 3 )
+margin_top = 24.0
+margin_right = 600.0
+margin_bottom = 144.0
+texture = SubResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 50.0
+margin_top = 160.0
+margin_right = 550.0
+margin_bottom = 596.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Continue" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+material = SubResource( 5 )
+margin_right = 500.0
+margin_bottom = 120.0
+texture_normal = SubResource( 6 )
+texture_hover = SubResource( 7 )
+
+[node name="NewGame" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+material = SubResource( 8 )
+margin_top = 124.0
+margin_right = 500.0
+margin_bottom = 244.0
+texture_normal = SubResource( 9 )
+texture_hover = SubResource( 10 )
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+material = SubResource( 11 )
+margin_top = 248.0
+margin_right = 500.0
+margin_bottom = 368.0
+texture_normal = SubResource( 12 )
+texture_hover = SubResource( 13 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 372.0
+margin_right = 500.0
+margin_bottom = 436.0
+alignment = 1
+
+[node name="Volume" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 218.0
+margin_right = 282.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 18 )
+texture_focused = ExtResource( 17 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="ChangeFocus" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -10.0
+pitch_scale = 2.0
+
+[node name="Interferecne" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Continue" to="." method="_on_TextureButton_focus_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/VBoxContainer/NewGame" to="." method="_on_TextureButton_focus_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_TextureButton_focus_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Volume" to="." method="_on_TextureButton_focus_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Volume" to="." method="_on_Volume_pressed"]
+[connection signal="finished" from="Interferecne" to="." method="_on_AudioStreamPlayer_finished"]

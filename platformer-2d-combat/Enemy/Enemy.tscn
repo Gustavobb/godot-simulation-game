@@ -1,0 +1,232 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Enemy/Enemy.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Boxes/HitBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Boxes/HurtBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy/WanderController.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Boxes/SoftCollision.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Boxes/PlayerDetectionZone.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Boxes/AttackDetection.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Boxes/HitBox.gd" type="Script" id=10]
+[ext_resource path="res://Effect/Particle.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.0762, 2.09195 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack"
+length = 0.16
+step = 0.02
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.144651 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack_animation_finished"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 15, 16, 17, 18, 22, 23 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitboxPivot/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.02, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.15
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.35
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.35
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31, 32, 33, 34 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 4.57326
+height = 6.55646
+
+[sub_resource type="RayShape2D" id=7]
+length = 68.4689
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 152.853, 77.4599 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 13.7025, 10 )
+
+[sub_resource type="RayShape2D" id=10]
+length = 29.1642
+
+[node name="Enemy01" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="WanderController" parent="." instance=ExtResource( 6 )]
+
+[node name="Stats" parent="." instance=ExtResource( 5 )]
+max_health = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 1 )
+hframes = 44
+frame = 22
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.445278, -3.13138 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 2 )
+anims/Hit = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Run = SubResource( 5 )
+
+[node name="HurtBox" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0.329613, -10.6346 )
+collision_layer = 32
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource( 6 )
+
+[node name="HitboxPivot" type="Position2D" parent="."]
+position = Vector2( 0, -12.189 )
+rotation = 4.71239
+
+[node name="HitBox" parent="HitboxPivot" instance=ExtResource( 3 )]
+position = Vector2( 0.187267, -52.1323 )
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HitboxPivot/HitBox" index="0"]
+position = Vector2( 0.0363731, -0.0325718 )
+shape = SubResource( 7 )
+disabled = true
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 8 )]
+visible = false
+position = Vector2( -0.909191, -11.5155 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 8 )
+
+[node name="SoftCollision" parent="." instance=ExtResource( 7 )]
+visible = false
+position = Vector2( -0.187703, -11.3521 )
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 9 )
+
+[node name="AttackDetectionPivot" type="Position2D" parent="."]
+position = Vector2( 0, -12.361 )
+rotation = 4.71239
+
+[node name="AttackDetection" parent="AttackDetectionPivot" instance=ExtResource( 9 )]
+collision_mask = 16
+script = ExtResource( 10 )
+damage = 0
+
+[node name="CollisionShape2D" parent="AttackDetectionPivot/AttackDetection" index="0"]
+shape = SubResource( 10 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="GhostTimer" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="Particle" parent="." instance=ExtResource( 11 )]
+position = Vector2( 0, -1.1919 )
+[connection signal="on_wall" from="." to="." method="_on_Enemy_on_wall"]
+[connection signal="wait_to_wander_timer_ended" from="WanderController" to="." method="_on_WanderController_wait_to_wander_timer_ended"]
+[connection signal="wander_timer_ended" from="WanderController" to="." method="_on_WanderController_wander_timer_ended"]
+[connection signal="out_of_health" from="Stats" to="." method="_on_Stats_out_of_health"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="invencibility_started" from="HurtBox" to="." method="_on_HurtBox_invencibility_started"]
+[connection signal="invincibility_ended" from="HurtBox" to="." method="_on_HurtBox_invincibility_ended"]
+[connection signal="area_entered" from="HitboxPivot/HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="body_entered" from="PlayerDetectionZone" to="." method="_on_PlayerDetectionZone_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionZone" to="." method="_on_PlayerDetectionZone_body_exited"]
+[connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]
+[connection signal="area_entered" from="AttackDetectionPivot/AttackDetection" to="." method="_on_AttackDetection_area_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_GhostTimer_timeout"]
+
+[editable path="HurtBox"]
+
+[editable path="HitboxPivot/HitBox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="SoftCollision"]
+
+[editable path="AttackDetectionPivot/AttackDetection"]

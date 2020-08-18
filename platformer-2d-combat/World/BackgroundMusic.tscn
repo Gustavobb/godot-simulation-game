@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/sound/ambient.wav" type="AudioStream" id=1]
+[ext_resource path="res://World/BackgroundMusic.gd" type="Script" id=2]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -2.0
+script = ExtResource( 2 )
+[connection signal="finished" from="." to="." method="_on_BackgroundMusic_finished"]

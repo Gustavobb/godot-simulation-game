@@ -1,0 +1,262 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://World/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://World/Environment/Advertising/Advertising03/Advertisement3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Boxes/PlayerMapDetection.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Boxes/HitBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/Environment/Grass/Grass.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=8]
+[ext_resource path="res://Effect/WorldEnvironment.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Platforms/CreatePlatforms/GroundedPlatform/GrowPlatformGround.tscn" type="PackedScene" id=10]
+[ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/Text.tscn" type="PackedScene" id=13]
+[ext_resource path="res://World/Environment/Fountain/Fountain.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Platforms/Platform.tscn" type="PackedScene" id=15]
+[ext_resource path="res://World/Environment/FakeTree/Tree1.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=17]
+[ext_resource path="res://World/Environment/Clouds/Clouds2.tscn" type="PackedScene" id=20]
+[ext_resource path="res://World/Environment/Clouds/Clouds.tscn" type="PackedScene" id=21]
+[ext_resource path="res://World/Environment/Advertising/Advertising01/Advertisement1.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Platforms/CreatePlatforms/AirPlatform/GrowPlatformAir.tscn" type="PackedScene" id=23]
+[ext_resource path="res://World/Environment/FakeTree/Tree2.tscn" type="PackedScene" id=24]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1911.8, 557.941 )
+
+[node name="Level3" type="Node2D"]
+script = ExtResource( 8 )
+enemies = 4
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1874.27, 362.575 )
+scale = Vector2( 2.94597, 0.946139 )
+region_rect = Rect2( 0, 0, 1270.28, 770 )
+
+[node name="CloudBG2" parent="." instance=ExtResource( 20 )]
+position = Vector2( -12.4266, 649.508 )
+scale = Vector2( 0.991285, 1 )
+region_rect = Rect2( 0, 0, 3760, 80 )
+
+[node name="CloudBG" parent="." instance=ExtResource( 21 )]
+position = Vector2( -16.0903, 638.526 )
+scale = Vector2( 0.995301, 1 )
+region_rect = Rect2( 0, 0, 3780, 86 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 11 )]
+visible = false
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[node name="Text" parent="CanvasLayer" instance=ExtResource( 13 )]
+margin_left = 0.793701
+margin_right = 0.793701
+
+[node name="TextLabel" parent="CanvasLayer/Text" index="3"]
+custom_colors/default_color = Color( 0.0470588, 0.0509804, 0.0588235, 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 16 )
+collision_layer = 6
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, 65535, 0, 0, 131071, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 589823, 0, 0, 655359, 0, 0, 589940, 0, 0, 720895, 0, 0, 655476, 0, 0, 786431, 0, 0, 721012, 0, 0, 851967, 0, 0, 786548, 0, 0, 917503, 0, 0, 852084, 0, 0, 983039, 0, 0, 917620, 0, 0, 1048575, 0, 0, 983156, 0, 0, 1114111, 0, 0, 1048692, 0, 0, 1179647, 0, 0, 1114228, 0, 0, 1245183, 0, 0, 1179764, 0, 0, 1310719, 0, 0, 1245297, 0, 0, 1245298, 0, 0, 1245299, 0, 0, 1245300, 0, 0, 1376255, 0, 0, 1310833, 0, 0, 1310834, 0, 0, 1310835, 0, 0, 1310836, 0, 0, 1441791, 0, 0, 1376369, 0, 0, 1376370, 0, 0, 1376371, 0, 0, 1376372, 0, 0, 1507327, 0, 0, 1441905, 0, 0, 1441906, 0, 0, 1441907, 0, 0, 1441908, 0, 0, 1572863, 0, 0, 1507426, 0, 0, 1507427, 0, 0, 1507445, 0, 0, 1638399, 0, 0, 1572962, 0, 0, 1572963, 0, 0, 1572982, 0, 0, 1703935, 0, 0, 1638498, 0, 0, 1638499, 0, 0, 1638518, 0, 0, 1769471, 0, 0, 1704034, 0, 0, 1704035, 0, 0, 1704054, 0, 0, 1835007, 0, 0, 1769570, 0, 0, 1769571, 0, 0, 1769590, 0, 0, 1900543, 0, 0, 1835106, 0, 0, 1835107, 0, 0, 1835126, 0, 0, 1966079, 0, 0, 1900642, 0, 0, 1900643, 0, 0, 1900655, 0, 0, 1900656, 0, 0, 1900657, 0, 0, 1900658, 0, 0, 1900659, 0, 0, 1900660, 0, 0, 1900661, 0, 0, 2031615, 0, 0, 1966148, 0, 0, 1966178, 0, 0, 1966179, 0, 0, 1966191, 0, 0, 1966192, 0, 0, 1966193, 0, 0, 1966194, 0, 0, 1966195, 0, 0, 1966196, 0, 0, 1966197, 0, 0, 2097151, 0, 0, 2031663, 0, 0, 2031664, 0, 0, 2031665, 0, 0, 2031666, 0, 0, 2031667, 0, 0, 2031668, 0, 0, 2031669, 0, 0, 2031670, 0, 0, 2031671, 0, 0, 2031684, 0, 0, 2031689, 0, 0, 2031690, 0, 0, 2031691, 0, 0, 2031692, 0, 0, 2031693, 0, 0, 2031694, 0, 0, 2031710, 0, 0, 2031711, 0, 0, 2031714, 0, 0, 2031715, 0, 0, 2031727, 0, 0, 2031728, 0, 0, 2031733, 0, 0, 2162687, 0, 0, 2097199, 0, 0, 2097200, 0, 0, 2097201, 0, 0, 2097202, 0, 0, 2097203, 0, 0, 2097204, 0, 0, 2097205, 0, 0, 2097206, 0, 0, 2097207, 0, 0, 2097220, 0, 0, 2097225, 0, 0, 2097226, 0, 0, 2097227, 0, 0, 2097228, 0, 0, 2097229, 0, 0, 2097230, 0, 0, 2097246, 0, 0, 2097247, 0, 0, 2097250, 0, 0, 2097251, 0, 0, 2097263, 0, 0, 2097264, 0, 0, 2097269, 0, 0, 2228223, 0, 0, 2162735, 0, 0, 2162736, 0, 0, 2162737, 0, 0, 2162738, 0, 0, 2162739, 0, 0, 2162740, 0, 0, 2162741, 0, 0, 2162742, 0, 0, 2162743, 0, 0, 2162756, 0, 0, 2162761, 0, 0, 2162762, 0, 0, 2162763, 0, 0, 2162764, 0, 0, 2162765, 0, 0, 2162766, 0, 0, 2162782, 0, 0, 2162783, 0, 0, 2162786, 0, 0, 2162787, 0, 0, 2162799, 0, 0, 2162800, 0, 0, 2162805, 0, 0, 2293759, 0, 0, 2228322, 0, 0, 2228323, 0, 0, 2228324, 0, 0, 2228325, 0, 0, 2228326, 0, 0, 2228327, 0, 0, 2228328, 0, 0, 2228329, 0, 0, 2228330, 0, 0, 2228331, 0, 0, 2228332, 0, 0, 2228333, 0, 0, 2228334, 0, 0, 2228335, 0, 0, 2228336, 0, 0, 2228341, 0, 0, 2359295, 0, 0, 2293858, 0, 0, 2293859, 0, 0, 2293860, 0, 0, 2293861, 0, 0, 2293862, 0, 0, 2293863, 0, 0, 2293864, 0, 0, 2293865, 0, 0, 2293866, 0, 0, 2293867, 0, 0, 2293868, 0, 0, 2293869, 0, 0, 2293870, 0, 0, 2293871, 0, 0, 2293872, 0, 0, 2293877, 0, 0, 2424831, 0, 0, 2359413, 0, 0, 2490367, 0, 0, 2424949, 0, 0, 2555903, 0, 0, 2490485, 0, 0, 2621439, 0, 0, 2556021, 0, 0, 2686975, 0, 0, 2621557, 0, 0, 2752511, 0, 0, 2687093, 0, 0, 2818047, 0, 0, 2752629, 0, 0, 2883583, 0, 0, 2818165, 0, 0, 2949119, 0, 0, 2883701, 0, 0, 3014655, 0, 0, 2949237, 0, 0, 3014773, 0, 0 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 7.21313, 109.881 )
+
+[node name="Enemies" type="YSort" parent="YSort"]
+
+[node name="Enemy01" parent="YSort/Enemies" instance=ExtResource( 17 )]
+position = Vector2( 3268.93, 508.712 )
+
+[node name="Enemy02" parent="YSort/Enemies" instance=ExtResource( 17 )]
+position = Vector2( 3507.04, 496.013 )
+
+[node name="Enemy03" parent="YSort/Enemies" instance=ExtResource( 17 )]
+position = Vector2( 3432.44, 503.95 )
+
+[node name="Enemy04" parent="YSort/Enemies" instance=ExtResource( 17 )]
+position = Vector2( 3338.78, 497.601 )
+
+[node name="Fire" type="YSort" parent="YSort"]
+
+[node name="Trees" type="YSort" parent="YSort"]
+
+[node name="Tree" parent="YSort/Trees" instance=ExtResource( 16 )]
+position = Vector2( 1755.02, 463.739 )
+frame = 7
+
+[node name="Tree2" parent="YSort/Trees" instance=ExtResource( 24 )]
+position = Vector2( 1680.84, 470.454 )
+frame = 0
+
+[node name="Tree3" parent="YSort/Trees" instance=ExtResource( 16 )]
+position = Vector2( 2397.45, 464.265 )
+frame = 2
+
+[node name="Grass" type="YSort" parent="YSort"]
+
+[node name="Grass" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 1561.35, 497.074 )
+frame = 3
+
+[node name="Fountain" type="YSort" parent="YSort"]
+
+[node name="Fountain" parent="YSort/Fountain" instance=ExtResource( 14 )]
+position = Vector2( 3375.29, 530.936 )
+frame = 6
+
+[node name="Platforms" type="YSort" parent="YSort"]
+
+[node name="EndMapPlatform" parent="YSort/Platforms" instance=ExtResource( 15 )]
+position = Vector2( 3624.01, 416.093 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="YSort/Platforms/EndMapPlatform" index="1"]
+one_way_collision = false
+
+[node name="GrowPlatformGround" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 136, 256 )
+
+[node name="GrowPlatformGround2" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 216, 256 )
+
+[node name="GrowPlatformGround3" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 296, 256 )
+
+[node name="GrowPlatformGround4" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 376, 256 )
+
+[node name="GrowPlatformGround5" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 456, 256 )
+
+[node name="GrowPlatformGround6" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 603.546, 520.53 )
+
+[node name="GrowPlatformGround7" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 752.951, 520.53 )
+
+[node name="GrowPlatformGround8" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 827.125, 520.53 )
+
+[node name="GrowPlatformGround9" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 678.249, 520.53 )
+
+[node name="GrowPlatformGround10" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 901.297, 520 )
+
+[node name="GrowPlatformGround11" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 976, 520 )
+
+[node name="GrowPlatformGround12" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 1184, 520 )
+
+[node name="GrowPlatformGround13" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 1264, 520 )
+
+[node name="GrowPlatformGround14" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 1976, 512 )
+
+[node name="GrowPlatformGround15" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2056, 512 )
+
+[node name="GrowPlatformGround16" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2136, 512 )
+
+[node name="GrowPlatformGround18" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2568, 512 )
+
+[node name="GrowPlatformGround19" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2648, 512 )
+
+[node name="GrowPlatformGround20" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2728, 512 )
+
+[node name="GrowPlatformGround21" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2808, 512 )
+
+[node name="GrowPlatformGround22" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2968, 512 )
+
+[node name="GrowPlatformGround23" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 2888, 512 )
+
+[node name="GrowPlatformGround17" parent="YSort/Platforms" instance=ExtResource( 10 )]
+position = Vector2( 2498.9, 461.13 )
+
+[node name="GrowPlatformGround24" parent="YSort/Platforms" instance=ExtResource( 10 )]
+position = Vector2( 3035.59, 460.22 )
+
+[node name="GrowPlatformGround25" parent="YSort/Platforms" instance=ExtResource( 23 )]
+position = Vector2( 528.843, 520.53 )
+
+[node name="Ad1" type="YSort" parent="YSort"]
+
+[node name="Advertisement1" parent="YSort/Ad1" instance=ExtResource( 22 )]
+position = Vector2( 1620.09, 447.865 )
+frame = 1
+
+[node name="Ad2" type="YSort" parent="YSort"]
+
+[node name="Ad3" type="YSort" parent="YSort"]
+
+[node name="Advertisement3" parent="YSort/Ad3" instance=ExtResource( 2 )]
+position = Vector2( 81.286, 87.8903 )
+frame = 1
+
+[node name="Advertisement4" parent="YSort/Ad3" instance=ExtResource( 2 )]
+position = Vector2( 976, 480 )
+frame = 5
+
+[node name="Advertisement5" parent="YSort/Ad3" instance=ExtResource( 2 )]
+position = Vector2( 2728, 480 )
+
+[node name="PlayerMapDetection" parent="." instance=ExtResource( 3 )]
+position = Vector2( 86.2328, 17.4389 )
+page = 10
+
+[node name="PlayerMapDetection2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 976, 400 )
+page = 11
+
+[node name="PlayerMapDetection3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2728, 392 )
+page = 12
+
+[node name="EndMap" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3773.44, 356.45 )
+level = 4
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 9 )]
+
+[node name="Boundries" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1826.62, 1189.21 )
+collision_mask = 128
+
+[node name="CollisionShape2D" parent="Boundries" index="0"]
+position = Vector2( 0.763428, -4.92041 )
+shape = SubResource( 1 )
+[connection signal="player_died" from="YSort/Player" to="." method="_on_Player_player_died"]
+[connection signal="enemie_died" from="YSort/Enemies/Enemy01" to="." method="_on_Enemy_enemie_died"]
+[connection signal="enemie_died" from="YSort/Enemies/Enemy02" to="." method="_on_Enemy_enemie_died"]
+[connection signal="enemie_died" from="YSort/Enemies/Enemy03" to="." method="_on_Enemy_enemie_died"]
+[connection signal="enemie_died" from="YSort/Enemies/Enemy04" to="." method="_on_Enemy_enemie_died"]
+[connection signal="player_entered" from="PlayerMapDetection" to="." method="_on_PlayerMapDetection_player_entered"]
+[connection signal="player_entered" from="PlayerMapDetection2" to="." method="_on_PlayerMapDetection_player_entered"]
+[connection signal="player_entered" from="PlayerMapDetection3" to="." method="_on_PlayerMapDetection_player_entered"]
+[connection signal="player_entered" from="EndMap" to="." method="_on_EndMap_player_entered"]
+[connection signal="area_entered" from="Boundries" to="Boundries" method="_on_Boundries_area_entered"]
+
+[editable path="CanvasLayer/Text"]
+
+[editable path="YSort/Platforms/EndMapPlatform"]
+
+[editable path="Boundries"]

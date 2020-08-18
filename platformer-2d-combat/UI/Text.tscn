@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/sound/output.wav" type="AudioStream" id=1]
+[ext_resource path="res://UI/Text.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFontData" id=1]
+antialiased = false
+font_path = "res://UI/font/Retro Gaming.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+extra_spacing_top = 7
+extra_spacing_char = 3
+font_data = SubResource( 1 )
+
+[node name="Text" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.005
+
+[node name="Clear" type="Timer" parent="."]
+one_shot = true
+
+[node name="Typing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 2.0
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = -180.0
+margin_right = -80.0
+margin_bottom = -40.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_constants/line_separation = 0
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Clear" to="." method="_on_Clear_timeout"]

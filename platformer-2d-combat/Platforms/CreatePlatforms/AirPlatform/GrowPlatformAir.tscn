@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Platforms/CreatePlatforms/GrowPlatform.gd" type="Script" id=1]
+[ext_resource path="res://Platforms/CreatePlatforms/shrink.wav" type="AudioStream" id=2]
+[ext_resource path="res://Platforms/CreatePlatforms/AirPlatform/Create_AirPlatform_01-Sheet-export.png" type="Texture" id=3]
+[ext_resource path="res://Platforms/CreatePlatforms/grow.wav" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Grow"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shrink"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 7, 6, 5, 4, 3, 2, 1, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 36.4571, 20.402 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 108.04, 82.5926 )
+
+[node name="GrowPlatformGround" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Grow = SubResource( 1 )
+anims/Shrink = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 9
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.49563, 3.34724 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 6.34958, -26.589 )
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -5.02241, 19.668 )
+shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 20.0
+pitch_scale = 0.7
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 20.0
+pitch_scale = 4.0
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
